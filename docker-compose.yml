@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  # ---- Backend API ----
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the model directory so the container can access a locally trained model
+      - ./backend/model:/app/model
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ---- Frontend (React / Nginx) ----
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Pass the backend URL at build time so Vite can bake it in
+        VITE_API_URL: http://localhost:8000
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
