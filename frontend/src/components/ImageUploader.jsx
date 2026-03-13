@@ -99,12 +99,13 @@ export default function ImageUploader({ onImageSelected, disabled = false }) {
         onDrop={handleDrop}
         className={`
           relative cursor-pointer rounded-2xl border-2 border-dashed
-          transition-all duration-300 ease-in-out
+          transition-all duration-300 ease-out
+          focus-within:ring-2 focus-within:ring-leaf-400/50 focus-within:ring-offset-2 focus-within:ring-offset-leaf-950
           ${disabled ? 'opacity-60 cursor-not-allowed' : ''}
           ${
             isDragging
-              ? 'border-leaf-400 bg-leaf-500/10 drop-zone-active scale-[1.02]'
-              : 'border-white/20 hover:border-leaf-400/50 hover:bg-white/5'
+              ? 'border-leaf-400 bg-leaf-500/10 drop-zone-active scale-[1.03] shadow-2xl shadow-leaf-400/20'
+              : 'border-white/20 hover:border-leaf-400/50 hover:bg-white/5 hover:shadow-2xl hover:shadow-leaf-500/10'
           }
           ${preview ? 'p-3' : 'p-10 sm:p-14'}
         `}
@@ -115,11 +116,11 @@ export default function ImageUploader({ onImageSelected, disabled = false }) {
             <img
               src={preview}
               alt="Uploaded leaf preview"
-              className="w-full max-h-80 object-contain rounded-xl"
+              className="w-full max-h-80 object-contain rounded-xl border border-leaf-400/20 shadow-lg shadow-black/20"
             />
             {/* Overlay on hover */}
             {!disabled && (
-              <div className="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center shadow-inner">
                 <p className="text-white text-sm font-medium">Click to change image</p>
               </div>
             )}
@@ -128,8 +129,8 @@ export default function ImageUploader({ onImageSelected, disabled = false }) {
           /* Empty state — upload prompt */
           <div className="flex flex-col items-center gap-4 text-center">
             {/* Upload icon */}
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-leaf-500/20 to-leaf-600/20 flex items-center justify-center">
-              <svg className="w-8 h-8 text-leaf-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-leaf-500/20 to-leaf-600/20 flex items-center justify-center animate-pulse">
+              <svg className="w-10 h-10 text-leaf-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
               </svg>
             </div>

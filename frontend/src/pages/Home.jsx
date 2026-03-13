@@ -60,14 +60,14 @@ export default function Home() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
       {/* Hero section */}
-      <div className="text-center mb-10 animate-fade-in">
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+      <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-shadow-glow">
           <span className="bg-gradient-to-r from-leaf-200 via-leaf-300 to-leaf-400 bg-clip-text text-transparent">
             Plant Disease
           </span>{' '}
           <span className="text-leaf-100">Detection</span>
         </h1>
-        <p className="mt-4 text-lg text-leaf-100/50 max-w-xl mx-auto leading-relaxed">
+        <p className="mt-4 text-xl text-leaf-100/50 max-w-xl mx-auto leading-relaxed">
           Upload a photo of a plant leaf and our AI will instantly identify diseases
           with treatment recommendations.
         </p>
